@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template ::bootstrap('Add New Contact')">
+</head>
+
+<body>
+
+<div class="text-center">
+    <h3>Add New Contact</h3>
+    <a th:href="@{/show/}">Go Back</a>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form action="" method="post">
+                Name: <br>
+                <input type="text" name="name" class="form-control" required /><br>
+                Email: <br>
+                <input type="email" name="email" class="form-control" required /><br>
+                Phone: <br>
+                <input type="text" name="phone" class="form-control" required/><br>
+                <input type="submit" value="Add" name="add" class="btn btn-primary">
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+</body>
+</html>

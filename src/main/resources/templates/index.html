@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template ::bootstrap('All Contacts')">
+<body>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort By
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" th:href="@{/show/(sort=id)}">Default</a>
+                        <a class="dropdown-item" th:href="@{/show/(sort=name)}">Name</a>
+                        <a class="dropdown-item" th:href="@{/show/(sort=email)}">Email</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8"></div>
+        <div class="col-md-2">
+            <a th:href="@{/insert/}" class="btn btn-success">NewContact</a>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
+    <table class="table table-striped">
+        <tr>
+            <th>Id
+                <a th:href="@{/show/(order=DESC)}"><i class="fas fa-sort-down"></i></a>
+                <a th:href="@{/show/(order=ASC)}"><i class="fas fa-sort-up"></i></a>
+            </th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Function</th>
+        </tr>
+        <tr th:each="row:${data}">
+            <td th:text="${row.id}"></td>
+            <td th:text="${row.name}"></td>
+            <td th:text="${row.email}"></td>
+            <td th:text="${row.phone}"></td>
+            <td>
+                <a th:href="@{/edit/(id=${row.id})}"><i class="far fa-edit"></i></a>
+                <a th:href="@{/delete/(id=${row.id})}"><i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+    </table>
+
+
+    <ul class="nav nav-pills">
+        <li class="nav-item" th:each="i : ${#numbers.sequence(0,data.totalPages - 1)}">
+            <a th:href="@{/show/(page=${i})}" th:text="${i}" class="nav-link" th:classappend="${currentPage}==${i}?'active':''"></a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
